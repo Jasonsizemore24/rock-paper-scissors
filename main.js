@@ -1,81 +1,69 @@
 
-const options = ['rock','paper','scissors'];
-
-
-// Function for getting the computers choice
+// Function for getting computer's choice
 
 function getComputerChoice() {
-
-const random = options[Math.floor(Math.random() * options.length)];
-
-return random;
+    const options = ['rock','paper','scissors'];
+    const computerChoice = options[Math.floor(Math.random() * options.length)];
+    return computerChoice;
 }
 
-
-
-// Function for getting the humans choice
-
+// Function for getting human's choice
 function getHumanChoice() {
-
-const choice = prompt("What is your choice?");
-const userChoice = choice.trim().toLowerCase().replace(/[^a-z]/g, '')
-
-if (userChoice === 'rock') {
-    return "User selected rock";
-  } else if (userChoice === 'paper') {
-    return "User selected paper";
-  } else if (userChoice === 'scissors') {
-    return "User selected scissors";
-  } else {
-    return "Invalid choice";
-  }
+    const humanChoice = prompt("Choose one: Rock, Paper, or Scissors");
+    return humanChoice;
 }
 
-// Function for each round
-
-function playRound(humanChoice,computerChoice) {
-if (humanChoice === computerChoice) {
-    console.log("Its a tie!")
-}
-  
-if (userChoice === 'rock' && computerChoice === 'scissors') {
-    console.log("You win!");
-    humanScore++;
-  }
-   if (userChoice === 'paper' && computerChoice === 'rock') {
-    console.log("You win!");
-    humanScore++;
-  }
-   if (userChoice === 'scissors' && computerChoice === 'paper') {
-    console.log("You win!");
-    humanScore++;
-  }
-  
-  // Lose conditions
-    if (userChoice === 'rock' && computerChoice === 'paper') {
-    console.log("Computer wins!");
-    computerScore++;
-  }
-     if (userChoice === 'paper' && computerChoice === 'scissors') {
-    console.log("Computer wins!");
-    computerScore++;
-  }
-  if (userChoice === 'scissors' && computerChoice === 'rock') {
-    console.log("Computer wins!");
-    computerScore++;
-  }
-
-
-}
-
-function playGame() {
+// Outer Function for playing multiple rounds, setting score.
+ function playGame() {
     let humanScore = 0;
-    let computerScore = 0;
-}
+    let computerScore = 0;  
+    
+    // Inner function for each round's logic; Choosing winner.
+    function playRound(humanChoice,computerChoice) {
 
+    
+        // Tie Condition
+        if (humanChoice === computerChoice) {
+            return ("It's a tie!")
+        } 
+    
+        // Human Wins
+        if (humanChoice === 'rock' && computerChoice === 'scissors') {
+            humanScore++;
+            return ("Human wins " + humanScore);
+          }
+           if (humanChoice === 'paper' && computerChoice === 'rock') {
+                humanScore++;
+                return ("Human wins " + humanScore);
+          }
+           if (humanChoice === 'scissors' && computerChoice === 'paper') {
+                humanScore++;
+                return ("Human wins " + humanScore);
+          }
+          
+          // Human Loses
+            if (humanChoice === 'rock' && computerChoice === 'paper') {
+                computerScore++;
+                return ("Computer Wins " + computerScore);
+          }
+             if (humanChoice === 'paper' && computerChoice === 'scissors') {
+                computerScore++;
+                return ("Computer Wins " + computerScore);
+          }
+             if (humanChoice === 'scissors' && computerChoice === 'rock') {
+                computerScore++;
+                return ("Computer Wins " + computerScore);
+          }
+    }
+        
+        for(let i =1; i <= 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+        console.log("User Score: " + humanScore, "Computer Score: " + computerScore);
+        }
+        console.log("Final: " + "User Score: " + humanScore, "Computer Score: " + computerScore);
+ }
 
-playRound(humanSelection, computerSelection);
-console.log(humanScore, computerScore);
+ playGame();
