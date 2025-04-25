@@ -1,0 +1,25 @@
+* {
+    text-align: center;
+    background-color:lightblue ;
+}
+h1 {
+margin-top: 100px;
+color: black;
+
+}
+
+#reset {
+    margin-top: 40px;
+    width: 200px;
+    height: 70px;
+    background-color: black;
+    color: white;
+}
+#rockBtn, #paperBtn, #scissorsBtn {
+    background-color: white;
+}
+
+#results {
+    margin-top: 40px;
+}
+
